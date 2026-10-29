@@ -5,7 +5,7 @@ use std::vec::Vec;
 // Supports multi-display layout positioning, scaling, refresh rates, bezel compensation,
 // independent monitor taskbars, wallpaper profiles, and ultra-wide virtual monitor splits.
 
-use crate::klib::HashMap;
+use std::collections::HashMap;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum DisplayRotation {

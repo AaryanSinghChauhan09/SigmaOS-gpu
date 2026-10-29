@@ -4,7 +4,42 @@
 use std::string::{String, ToString};
 use std::vec::Vec;
 
-use crate::productivity::mint_competitor::{NvidiaPrimeProfile, SovereignNvidiaPrimeEngine};
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum NvidiaPrimeProfile {
+    IntegratedIntelRadeon,
+    NvidiaOnDemand,
+    NvidiaPerformance,
+    OffloadCompute,
+}
+
+#[derive(Debug, Clone)]
+pub struct NvidiaPrimeApplet {
+    pub active_profile: NvidiaPrimeProfile,
+}
+
+#[derive(Debug, Clone)]
+pub struct SovereignNvidiaPrimeEngine {
+    pub applet: NvidiaPrimeApplet,
+}
+
+impl SovereignNvidiaPrimeEngine {
+    pub fn new() -> Self {
+        Self {
+            applet: NvidiaPrimeApplet {
+                active_profile: NvidiaPrimeProfile::NvidiaOnDemand,
+            },
+        }
+    }
+    pub fn set_profile(&mut self, profile: NvidiaPrimeProfile) {
+        self.applet.active_profile = profile;
+    }
+}
+
+impl Default for SovereignNvidiaPrimeEngine {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum GraphicsBackendApi {

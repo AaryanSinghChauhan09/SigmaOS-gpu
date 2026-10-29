@@ -4,4 +4,5 @@
 pub mod gpu;
 pub mod graphics;
 
-pub use gpu::GPUManager;
+pub use gpu::GpuManager;
+pub use gpu::GpuManager as GPUManager;
