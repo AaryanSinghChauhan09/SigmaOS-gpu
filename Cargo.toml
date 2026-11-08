@@ -1,17 +1,10 @@
 [package]
-name = "sigmaos-gpu"
+name = "sigmaos_gpu"
 version = "0.1.0"
 edition = "2021"
-authors = ["SigmaOS Project"]
-description = "GPU and graphics subsystem"
-license = "GPL-3.0-or-later"
-repository = "https://github.com/AaryanSinghChauhan09/SigmaOS-gpu"
-readme = "README.md"
-keywords = ["gpu", "graphics", "drm"]
-categories = ["hardware-support"]
+license = "MIT"
+description = "SigmaOS gpu component inspired by Linux Mint / Omarchy / Arch Linux."
 
-[dependencies]
-sigmaos-kernel = { version = "0.1", path = "../SigmaOS-kernel" }
-
-[profile.release]
-opt-level = 3
+[lib]
+name = "sigmaos_gpu"
+path = "src/lib.rs"
