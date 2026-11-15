@@ -41,12 +41,16 @@ impl Tool {
     /// Create the tool; fails fast on empty name.
     pub fn new(name: impl Into<String>) -> Result<Self, ToolError> {
         let name = name.into();
-        if name.trim().is_empty() { return Err(ToolError::EmptyName); }
+        if name.trim().is_empty() {
+            return Err(ToolError::EmptyName);
+        }
         Ok(Self { name })
     }
 
     /// Tool name.
-    pub fn name(&self) -> &str { &self.name }
+    pub fn name(&self) -> &str {
+        &self.name
+    }
 
     /// Dispatch a subcommand. Supported: `status`, `version`, `help`.
     /// Commands needing args that get none fail fast.
@@ -80,14 +84,16 @@ mod tests {
     #[test]
     fn unknown_command_fails() {
         let t = Tool::new("demo").unwrap();
-        assert!(matches!(t.run(&["bogus"]), Err(ToolError::UnknownCommand(_))));
+        assert!(matches!(
+            t.run(&["bogus"]),
+            Err(ToolError::UnknownCommand(_))
+        ));
     }
 
     #[test]
     fn empty_name_fails() {
         assert!(Tool::new(" ").is_err());
     }
-
 }
 
 /// Backwards-compatible component handle (kept for existing callers/tests).
@@ -99,6 +105,13 @@ pub struct Component {
 impl Component {
     /// Create the component handle.
     pub fn new() -> Self {
-        Self { name: "SigmaOS Component" }
+        Self {
+            name: "SigmaOS Component",
+        }
+    }
+
+    /// Return component name.
+    pub fn name(&self) -> &'static str {
+        self.name
     }
 }
